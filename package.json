@@ -1,0 +1,11 @@
+{
+  "name": "blocipedia-node",
+  "version": "1.0.0",
+  "description": "A Wikipedia-like application for users to collaborate on community-sourced content",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=test && jasmine"
+  },
+  "author": "",
+  "license": "ISC"
+}
