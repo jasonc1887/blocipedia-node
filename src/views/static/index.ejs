@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+    <!-- Head -->
+
+    <head>
+        <% include ./partials/head.ejs %> 
+    </head>
+  
+    <body>
+
+        <!-- Navigation -->
+        <% include ./partials/navbar.ejs %>
+
+        <!-- Page Content -->
+        <main class="container">
+
+             <!-- Jumbotron Header -->
+            <header class="jumbotron my-4">
+               <h1 class="display-3">Blocipedia: Social, Markdown Wikis</h1>
+               <p class="lead">Create and share Markdown Wikis</p>
+               <a href="#" class="btn btn-primary btn-lg">Sign up</a>
+            </header>
+
+        <!-- Page Features -->
+        <section class="d-flex justify-content-around">
+            <section class="col-lg-4">
+             <a href="#" class="btn btn-primary btn-lg">Free Plan</a>
+             <p class="card-text">Create as many public Wikis as you want</p>           
+            </section>
+
+            <section class="col-lg-4">
+             <a href="#" class="btn btn-primary btn-lg">Premium Plan</a>
+             <p class="card-text">Create private Wikis</p>
+            </section>
+          </div>  
+            
+        </section>
+        
+        <!-- /.row -->
+
+        </main>
+        
+        <!-- /.container -->
+
+        <!-- Scripts -->
+        <% include ./partials/baseScripts.ejs %>
+
+    </body>
+</html>
