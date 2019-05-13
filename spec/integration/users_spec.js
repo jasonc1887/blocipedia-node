@@ -60,9 +60,8 @@ describe("routes : users", () => {
                 }
             );
         })
-    });
 
-    it("should not create a new user with invalid attributes and redirect", (done) => {
+        it("should not create a new user with invalid attributes and redirect", (done) => {
 
         request.post(
             {
@@ -85,4 +84,18 @@ describe("routes : users", () => {
             }
         );
     });
+    });
+
+    describe("GET /users/sign_in", () => {
+
+        it("should render a view with a sign in form", (done) => {
+            request.get(`${base}sign_in`, (err, res, body) => {
+                expect(err).toBeNull();
+                expect(body).toContain("Sign in");
+                done();
+            });
+        });
+    });
+
+
 });
