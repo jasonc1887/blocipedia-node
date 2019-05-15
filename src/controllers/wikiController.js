@@ -23,9 +23,7 @@ module.exports = {
             body: req.body.body,
             userId: req.user.id
         };
-        console.log(newWiki);
         wikiQueries.addWiki(newWiki, (err, wiki) => {
-            console.log(wiki);
             if(err){
                 res.redirect(500, "/wikis/new");
             }   else {

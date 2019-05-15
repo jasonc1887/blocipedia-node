@@ -68,7 +68,8 @@ describe("routes : wikis ", () => {
             url: `${base}create`,
             form: {
                 title: "Rock Climbing",
-                body: "Free soloing is easy!"
+                body: "Free soloing is easy!",
+                userId: this.user.id
             }
         };
 
