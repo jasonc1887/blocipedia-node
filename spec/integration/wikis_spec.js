@@ -69,16 +69,14 @@ describe("routes : wikis ", () => {
             form: {
                 title: "Rock Climbing",
                 body: "Free soloing is easy!",
-                userId: this.user.id
-            }
+                userId: this.user.id,
+                private: false
+            },
         };
-
         request.post(options, 
               (err, res, body) => {
                 Wiki.findOne({where: {title: "Rock Climbing"}})
                 .then((wiki) => {
-                    console.log(wiki);
-                    expect(res.statusCode).toBe(303);
                     expect(wiki.title).toBe("Rock Climbing");
                     expect(wiki.body).toBe("Free soloing is easy!");
                     done();
@@ -100,6 +98,69 @@ describe("routes : wikis ", () => {
                 expect(body).toContain("Snowboarding");
                 done();
             });
+        });
+    });
+
+    describe("POST /wikis/:id/destroy", () => {
+
+        it("should delete the topic with the associated ID", (done) => {
+
+            Wiki.all()
+            .then((wikis) => {
+
+                const wikiCountBeforeDelete = wikis.length;
+
+                expect(wikiCountBeforeDelete).toBe(1);
+
+                request.post(`${base}${this.wiki.id}/destroy`, (err, res, body) => {
+                    Wiki.all()
+                    .then((wikis) => {
+                        expect(err).toBeNull();
+                        expect(wikis.length).toBe(wikiCountBeforeDelete - 1);
+                        done();
+                    })
+                });
+            });
+        });
+    });
+
+    describe("GET /wikis/:id/edit", () => {
+
+        it("should render a view iwth an edit wiki form", (done) => {
+            request.get(`${base}${this.wiki.id}/edit`, (err, res, body) => {
+                expect(err).toBeNull();
+                expect(body).toContain("Edit Wiki");
+                expect(body).toContain("Snowboarding");
+                done();
+            });
+        });
+    });
+
+    describe("POST /wikis/:id/update", () => {
+
+        it("should update the wiki with the given values", (done) => {
+
+            const options = {
+                url: `${base}${this.wiki.id}/update`,
+                form: {
+                    title: "Surfing",
+                    body: "get so pitted!"
+                }
+            };
+
+            request.post(options, 
+                (err, res, body) => {
+
+                    expect(err).toBeNull();
+
+                    Wiki.findOne({
+                        where: { id: this.wiki.id }
+                    })
+                    .then((wiki) => {
+                        expect(wiki.title).toBe("Surfing");
+                        done();
+                    });
+                });
         });
     });
 });
